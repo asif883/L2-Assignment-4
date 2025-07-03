@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import '../../CSS/font.css'
+import '../../CSS/nav.css'
 import { PiShoppingCartBold } from "react-icons/pi";
 import { FaSearch } from "react-icons/fa";
 
