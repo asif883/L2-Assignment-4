@@ -6,4 +6,11 @@ export interface Book {
   description: string;
   copies: number;
   available: boolean;
+  _id: string;
 }
+
+export type BaseResponse<T> = {
+  success: boolean;
+  message: string;
+  data: T;
+};
