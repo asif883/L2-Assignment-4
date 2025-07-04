@@ -1,11 +1,11 @@
 import Swal from "sweetalert2";
 import Loading from "../../Components/Shared/Loading";
 import { useGetBooksQuery , useDeleteBookMutation } from "../../redux/features/books/booksApi";
+import { Link } from "react-router-dom";
 
 const Books = () => {
     const { data: books, isLoading } = useGetBooksQuery()
     const [deleteBook] = useDeleteBookMutation()
-
     if (isLoading) return <Loading/>
     
     const handleDelete = async (id: string): Promise<void> => {
@@ -62,7 +62,7 @@ const Books = () => {
                 <tr key={book?._id}>
                   <td className="border p-2 text-center">{book?.title}</td>
                   <td className="border p-2 text-center">{book?.author}</td>
-                  <td className="border p-2 text-center">{book?.genre}</td>
+                  <td className="border p-2 text-center capitalize">{book?.genre}</td>
                   <td className="border p-2 text-center">{book?.isbn}</td>
                   <td className="border p-2 text-center">{book?.copies}</td>
                   <td className="border p-2 text-center">
@@ -76,9 +76,9 @@ const Books = () => {
                   </td>
                   <td className="border p-2">
                     <div className="flex flex-wrap items-center justify-center gap-2">
-                      <button className="px-2 py-1 border rounded-md text-blue-600 hover:bg-blue-50 cursor-pointer">
+                      <Link to={`/book-update/${book?._id}`} className="px-2 py-1 border rounded-md text-blue-600 hover:bg-blue-50 cursor-pointer">
                         Edit
-                      </button>
+                      </Link>
                       <button
                         onClick={() => handleDelete(book?._id)}
                        className="px-2 py-1 border rounded-md text-red-600 hover:bg-red-50 cursor-pointer">
