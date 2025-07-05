@@ -2,10 +2,15 @@ import Swal from "sweetalert2";
 import Loading from "../../Components/Shared/Loading";
 import { useGetBooksQuery , useDeleteBookMutation } from "../../redux/features/books/booksApi";
 import { Link } from "react-router-dom";
+import BorrowModal from "../../Components/BorrowModal";
+import { useState } from "react";
+import '../../CSS/font.css'
 
 const Books = () => {
     const { data: books, isLoading } = useGetBooksQuery()
     const [deleteBook] = useDeleteBookMutation()
+    const [selectedBook, setSelectedBook] = useState(null);
+
     if (isLoading) return <Loading/>
     
     const handleDelete = async (id: string): Promise<void> => {
@@ -40,10 +45,27 @@ const Books = () => {
       }
     };
 
-
+    const handleUnavailableBook = () => {
+        Swal.fire({
+          icon: "question",
+          title: "Unavailable !!",
+          text: "Sorry, This book is not available right now!!",
+          confirmButtonColor: "#DE3241"
+        });
+    }
 
     return (
-      <div className="max-w-7xl mx-auto px-3 my-10 md:my-16">
+      <div className="max-w-7xl mx-auto px-3 my-10">
+        {selectedBook && (
+        <BorrowModal
+          book={selectedBook}
+          onClose={() => setSelectedBook(null)}
+        />
+        )}
+        <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold mb-1.5 font text-[#DE3241]">Library Book Catalog</h1>
+            <p className="text-gray-700 font-medium">Browse and manage all books available in the library.</p>
+        </div>
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300">
             <thead className="bg-gray-100">
@@ -84,9 +106,20 @@ const Books = () => {
                        className="px-2 py-1 border rounded-md text-red-600 hover:bg-red-50 cursor-pointer">
                         Delete
                       </button>
-                      <button  className="px-2 py-1 border rounded-md text-green-600 hover:bg-green-50 cursor-pointer">
-                        Borrow
-                      </button>
+                      {
+                         book?.copies > 0 ? 
+                        <button onClick={() => setSelectedBook(book)} 
+                        className="px-2 py-1 border rounded-md text-green-600 hover:bg-green-50 cursor-pointer">
+                          Borrow
+                        </button> 
+                         : 
+                         <>
+                          <button 
+                            onClick={()=> handleUnavailableBook()}
+                          className="px-2 py-1 border rounded-md text-green-600 hover:bg-green-50 cursor-pointer">Borrow</button>
+                         </>
+                      }
+
                     </div>
                   </td>
                 </tr>

@@ -4,6 +4,7 @@ import Home from "../Pages/HomePage/Home";
 import Books from "../Pages/AllBooks/Books";
 import AddBook from "../Pages/AddBooks/AddBook";
 import Update from "../Pages/UpdateBook/Update";
+import BorrowSummary from "../Pages/Borrow/BorrowSummary";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '/book-update/:id',
                 element: <Update/>
+            },
+            {
+                path: '/borrow-summary',
+                element: <BorrowSummary/>
             }
         ]
     }

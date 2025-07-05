@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useAddBookMutation } from "../../redux/features/books/booksApi";
+import '../../CSS/font.css'
 
 type BookFormInputs = {
   title: string;
@@ -43,7 +44,7 @@ const AddBook = () => {
    };
 
   return (
-    <div className="max-w-5xl mx-auto px-10 py-16 bg-white rounded shadow my-12">
+    <div className="max-w-5xl mx-auto p-10 bg-white rounded shadow my-12">
       <h2 className="text-4xl font-bold mb-12 text-center text-[#DE3241] font">Add New Book</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
 

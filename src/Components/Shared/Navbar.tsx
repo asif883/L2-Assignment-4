@@ -14,7 +14,7 @@ const navItems = [
 const Navbar = () => {
 
     return (
-        <div className="px-3 md:px-6">
+        <div className="px-3 md:px-6 shadow py-1">
             <div className="navbar bg-base-100 max-w-7xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
