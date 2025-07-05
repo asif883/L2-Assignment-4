@@ -6,7 +6,7 @@ const AllBooks = () => {
     const { data: books } = useGetBooksQuery()
 
     return (
-        <div className="mb-10 md:mb-20">
+        <div className="mb-10 md:mb-20 px-4">
             <div className="text-center">
                 <h1 className="text-2xl md:text-4xl font-bold font text-[#DE3241]">Explore Our Library</h1>
                 <p className="max-w-xl mx-auto mt-1 text-gray-600">Discover a wide range of books across genres – from fiction to non-fiction, ready to be borrowed instantly.</p>
