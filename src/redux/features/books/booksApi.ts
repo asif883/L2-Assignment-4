@@ -65,6 +65,10 @@ export const booksApi = apiSlice.injectEndpoints({
       query: () => "/api/borrow/summary",
       providesTags: ["BorrowSummary"],
     }),
+      getBookById: builder.query<BaseResponse<Book>, string>({
+      query: (id) => `/api/books/${id}`,
+      providesTags: (_result, _error, id) => [{ type: "Books", id }],
+    }),
   }),
 });
 
@@ -75,4 +79,5 @@ export const {
   useUpdateBookMutation,
   useBorrowBookMutation,
   useGetBorrowSummaryQuery,
+  useGetBookByIdQuery
 } = booksApi;

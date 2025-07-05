@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import BorrowModal from "../../Components/BorrowModal";
 import { useState } from "react";
 import '../../CSS/font.css'
+import type { Book } from "../../types/bookTypes";
 
 const Books = () => {
     const { data: books, isLoading } = useGetBooksQuery()
     const [deleteBook] = useDeleteBookMutation()
-    const [selectedBook, setSelectedBook] = useState(null);
+    const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
     if (isLoading) return <Loading/>
     
